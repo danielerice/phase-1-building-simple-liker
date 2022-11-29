@@ -4,7 +4,30 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+//selects all buttons and uses a loop to add events and the likeHandler callback function
+let buttonList = document.querySelectorAll(`.like-glyph`);
+buttonList.forEach(addEventsToList);
 
+function addEventsToList (btn) {
+  btn.addEventListener(`click`, likeHandler);
+}
+
+//when buttons are clicked calls mimicserverCall, if successful->fills heart, if error->removes .hidden for 3 secs
+function likeHandler(event) {
+    setTimeout(addHidden, 3000)
+    mimicServerCall()
+    .then( () => {
+      event.target.innerText = FULL_HEART
+    })
+    .catch(() => {
+      const el = document.getElementById('modal');
+      el.className=``;
+    })
+}
+function addHidden() {
+  const el = document.getElementById('modal');
+      el.className=`hidden`;
+}
 
 
 //------------------------------------------------------------------------------
